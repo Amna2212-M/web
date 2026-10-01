@@ -657,6 +657,11 @@
         .order-confirmation { margin: auto 0; text-align: center; }
         .confirmation-mark { display: inline-grid; place-items: center; width: 58px; height: 58px; margin-bottom: 16px; border-radius: 50%; color: #fff; background: #48a879; font-size: 28px; }
         .order-confirmation p { color: var(--muted); line-height: 1.7; }
+        .confirmation-contact { margin: 20px 0; padding: 17px; border: 1px solid #e9dff2; border-radius: 16px; background: linear-gradient(135deg,#fff8ec,#f7efff); }
+        .confirmation-contact h4 { margin: 0 0 5px; font-size: 15px; }
+        .confirmation-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 14px; }
+        .confirmation-links a { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 9px 13px; border-radius: 999px; color: #6533aa; background: #fff; border: 1px solid #e3d9ef; font-size: 13px; font-weight: 700; text-decoration: none; }
+        .confirmation-links a:hover { color: #fff; border-color: transparent; background: linear-gradient(110deg,#6533aa,#e56570); }
         body.cart-open { overflow: hidden; }
         @media (max-width: 680px) {
             .nav-actions { grid-column: 2; grid-row: 1; gap: 7px; }
@@ -1149,6 +1154,17 @@
             <span class="confirmation-mark">&#10003;</span>
             <h3>Order request saved</h3>
             <p id="confirmationText">Your request is saved on this device.</p>
+            <div class="confirmation-contact">
+                <h4>Questions about price or delivery?</h4>
+                <p>Message the artist with your order number to discuss the price, delivery, or your painting.</p>
+                <div class="confirmation-links" aria-label="Contact the artist">
+                    <a id="orderWhatsApp" href="https://wa.me/923338682088" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                    <a href="mailto:bano.entry2005@gmail.com">Email</a>
+                    <a href="https://www.instagram.com/creative_spirit.22?igsi=N2x5dzB6NWM1ODdn" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/@am_art2212" target="_blank" rel="noopener noreferrer">TikTok</a>
+                    <a href="https://www.youtube.com/@CreativeSpirit22" target="_blank" rel="noopener noreferrer">YouTube</a>
+                </div>
+            </div>
             <button class="checkout-button" id="finishOrder" type="button">Continue shopping</button>
         </div>
     </aside>
@@ -1341,6 +1357,7 @@
                 const result = await response.json();
                 if (!response.ok) throw new Error(result.error || "The order could not be saved.");
                 document.getElementById("confirmationText").textContent = `Order ${result.order_number} has been saved by the shop. They can contact you to confirm the price and delivery.`;
+                document.getElementById("orderWhatsApp").href = `https://wa.me/923338682088?text=${encodeURIComponent(`Hi, I placed order ${result.order_number}. I would like to discuss the price and delivery.`)}`;
                 checkoutForm.hidden = true;
                 document.getElementById("cartView").hidden = true;
                 orderConfirmation.hidden = false;
