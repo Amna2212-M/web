@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+orders.sqlite3
+orders.sqlite3-shm
+orders.sqlite3-wal
+.env

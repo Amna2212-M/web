@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery | Creative Spirit</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #fffaf4;
+            --lavender: #e9ddff;
+            --peach: #ffd9c7;
+            --yellow: #ffeaa7;
+            --sage: #d8eadb;
+            --coral: #e88978;
+            --purple: #7656a8;
+            --text: #29232f;
+            --muted: #746b78;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 250, 244, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(41, 35, 47, 0.08);
+        }
+
+        .navbar {
+            max-width: 1250px;
+            margin: auto;
+            padding: 20px 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--coral);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 34px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--purple);
+        }
+
+        .shop-button {
+            background: var(--purple);
+            color: white;
+            padding: 11px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .shop-button:hover {
+            background: var(--coral);
+        }
+
+        /* =========================
+           PAGE HERO
+        ========================= */
+
+        .gallery-hero {
+            background:
+                linear-gradient(
+                    120deg,
+                    #e9ddff,
+                    #ffd9c7,
+                    #ffeaa7
+                );
+
+            padding: 90px 30px;
+            text-align: center;
+        }
+
+        .gallery-label {
+            display: inline-block;
+            background: white;
+            padding: 8px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .gallery-hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(48px, 7vw, 75px);
+            line-height: 1;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .gallery-hero h1 span {
+            color: var(--coral);
+            font-style: italic;
+        }
+
+        .gallery-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #5f5562;
+            font-size: 17px;
+        }
+
+        /* =========================
+           FILTERS
+        ========================= */
+
+        .gallery-section {
+            max-width: 1250px;
+            margin: auto;
+            padding: 70px 30px 100px;
+        }
+
+        .gallery-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            gap: 20px;
+        }
+
+        .gallery-top h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+            font-weight: 700;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .filter-btn {
+            border: 1px solid #d9d0dc;
+            background: white;
+            padding: 9px 17px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--purple);
+            color: white;
+            border-color: var(--purple);
+        }
+
+        /* =========================
+           PAINTINGS GRID
+        ========================= */
+
+        .painting-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .painting-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.35s ease;
+            box-shadow: 0 5px 20px rgba(40, 30, 50, 0.05);
+        }
+
+        .painting-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(40, 30, 50, 0.12);
+        }
+
+        .painting-image {
+            height: 410px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .painting-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        .painting-card:hover .painting-image img {
+            transform: scale(1.06);
+        }
+
+        .art-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: white;
+            color: var(--purple);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .painting-info {
+            padding: 21px;
+        }
+
+        .painting-info h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .painting-type {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 17px;
+        }
+
+        .painting-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price {
+            color: var(--purple);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .order-button {
+            background: var(--coral);
+            color: white;
+            padding: 9px 15px;
+            border-radius: 22px;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .order-button:hover {
+            background: var(--purple);
+        }
+
+        /* =========================
+           BOTTOM MESSAGE
+        ========================= */
+
+        .gallery-note {
+            margin-top: 70px;
+            padding: 45px;
+            border-radius: 25px;
+            background: var(--sage);
+            text-align: center;
+        }
+
+        .gallery-note h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .gallery-note p {
+            max-width: 650px;
+            margin: auto;
+            color: #59655b;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #29232f;
+            color: white;
+            padding: 60px 30px 25px;
+        }
+
+        .footer-inner {
+            max-width: 1250px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+
+            padding-bottom: 45px;
+        }
+
+        .footer-brand h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand h2 span {
+            color: #ffb39f;
+        }
+
+        .footer-brand p {
+            color: #c8c0cb;
+            max-width: 350px;
+            font-size: 14px;
+        }
+
+        footer h4 {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #c8c0cb;
+            font-size: 14px;
+            margin-bottom: 9px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffb39f;
+        }
+
+        .footer-bottom {
+            max-width: 1250px;
+            margin: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+            text-align: center;
+            color: #aaa2ad;
+            font-size: 12px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .shop-button {
+                display: none;
+            }
+
+            .painting-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .filter-buttons {
+                justify-content: flex-start;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 620px) {
+
+            .navbar {
+                padding: 17px 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .gallery-hero {
+                padding: 65px 20px;
+            }
+
+            .gallery-section {
+                padding: 55px 20px 75px;
+            }
+
+            .gallery-top h2 {
+                font-size: 31px;
+            }
+
+            .painting-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .painting-image {
+                height: 430px;
+            }
+
+            .gallery-note {
+                padding: 35px 20px;
+            }
+
+            .gallery-note h2 {
+                font-size: 30px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* Brighter color accents and richer surfaces */
+        :root {
+            --cream: #fff8ed;
+            --lavender: #e5c8ff;
+            --peach: #ffc5a1;
+            --yellow: #ffe16b;
+            --sage: #c8efd2;
+            --coral: #f06d62;
+            --purple: #7041b8;
+            --text: #282037;
+        }
+        .site-header { background: rgba(255, 248, 237, 0.95); }
+        .gallery-hero { background: linear-gradient(120deg, #dcb8ff, #ffb795 52%, #ffe16b); }
+        .gallery-section { background: linear-gradient(180deg, #fff8ed 0%, #fff 48%, #f4eaff 100%); }
+        .painting-card { box-shadow: 0 12px 30px rgba(61, 39, 83, 0.1); }
+        .filter-btn.active, .order-button { background: linear-gradient(120deg, #7041b8, #a14bc4); }
+        .filter-btn:hover, .order-button:hover { background: linear-gradient(120deg, #f06d62, #f3a34c); }
+        .gallery-note { background: linear-gradient(120deg, #c8efd2, #b8e6df, #d9c4ff); }
+
+        .painting-card { cursor: pointer; }
+        .painting-card:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
+        .product-view-button { border: 0; cursor: pointer; font: inherit; }
+        .product-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(31, 22, 43, .72); }
+        .product-modal.is-open { display: flex; }
+        .product-dialog { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); width: min(900px, 100%); max-height: min(85vh, 760px); overflow: auto; border-radius: 24px; background: white; box-shadow: 0 28px 90px rgba(0,0,0,.3); }
+        .product-dialog img { width: 100%; height: 100%; min-height: 390px; max-height: 680px; object-fit: contain; background: #f7f1ea; }
+        .product-dialog-copy { align-self: center; padding: 48px 36px; }
+        .product-dialog-copy .art-tag { position: static; display: inline-block; margin-bottom: 18px; }
+        .product-dialog-copy h2 { margin: 0 0 14px; font: 700 34px/1.15 "Playfair Display", serif; color: var(--text); }
+        .product-dialog-copy p { color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+        .product-dialog-copy .order-button { display: inline-block; }
+        .product-modal-close { position: absolute; top: 14px; right: 14px; z-index: 1; width: 42px; height: 42px; border: 0; border-radius: 50%; background: white; color: var(--text); font-size: 26px; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
+        body.modal-open { overflow: hidden; }
+        @media (max-width: 680px) { .product-modal { padding: 12px; } .product-dialog { grid-template-columns: 1fr; max-height: 92vh; } .product-dialog img { min-height: 0; height: min(48vh, 420px); } .product-dialog-copy { padding: 26px 24px 30px; } .product-dialog-copy h2 { font-size: 28px; } }
+
+        /* Bright shared navigation and small-screen layout */
+        :root {
+            --cream: #fff8ec;
+            --lavender: #dfc0ff;
+            --peach: #ffc49e;
+            --yellow: #ffe36e;
+            --sage: #c8edd0;
+            --coral: #f36b5e;
+            --purple: #6533aa;
+            --text: #29203b;
+            --muted: #706779;
+        }
+        html, body { width: 100%; max-width: 100%; }
+        body { overflow-x: clip; }
+        img { max-width: 100%; }
+        .site-header {
+            color: #fff;
+            background: linear-gradient(105deg, #592b9e 0%, #8540b6 56%, #e56570 100%);
+            border-bottom: 0;
+            box-shadow: 0 8px 24px rgba(67, 34, 110, .2);
+        }
+        .navbar { width: min(100%, 1310px); gap: 22px; }
+        .logo { color: #fff; white-space: nowrap; }
+        .logo span { color: #ffe36e; }
+        .nav-links a { color: rgba(255,255,255,.9); padding: 8px 11px; border-radius: 999px; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,.17); }
+        .shop-button { color: #4e287a; background: #ffe36e; white-space: nowrap; }
+        .shop-button:hover { color: #fff; background: #f36b5e; }
+        .footer-brand h2 span { color: #ffe36e; }
+        @media (max-width: 860px) {
+            .navbar { padding: 15px 22px; gap: 14px; }
+            .nav-links { gap: clamp(4px, 1.2vw, 12px); }
+            .shop-button { display: inline-flex; align-items: center; justify-content: center; }
+        }
+        @media (max-width: 680px) {
+            .navbar {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 8px 12px;
+                padding: 12px 16px 10px;
+            }
+            .logo { grid-column: 1; grid-row: 1; font-size: clamp(18px, 5vw, 22px); }
+            .shop-button { grid-column: 2; grid-row: 1; padding: 8px 13px; font-size: 12px; }
+            .nav-links {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                width: 100%;
+                justify-content: space-between;
+                gap: 4px;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links a { flex: 0 0 auto; padding: 7px 9px; font-size: 12px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+        }
+        @media (max-width: 380px) {
+            .navbar { padding-inline: 12px; }
+            .nav-links a { padding-inline: 7px; font-size: 11px; }
+        }
+
+        .gallery-hero { color: #35224d; }
+        .gallery-hero h1 span { color: #6533aa; }
+        .gallery-section { width: min(100%, 1360px); margin-inline: auto; }
+        .filter-buttons { max-width: 100%; }
+        .filter-btn { transition: transform .2s ease, background .2s ease, color .2s ease; }
+        .filter-btn:hover { transform: translateY(-2px); }
+        .painting-card { border: 1px solid rgba(101,51,170,.09); }
+        @media (max-width: 860px) {
+            .gallery-hero { padding: 70px 24px; }
+            .gallery-section { padding-inline: 24px; }
+            .painting-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+            .painting-image { height: clamp(270px, 48vw, 390px); }
+        }
+        @media (max-width: 560px) {
+            .gallery-hero { padding: 52px 18px; }
+            .gallery-section { padding: 42px 16px 58px; }
+            .gallery-top { gap: 20px; }
+            .gallery-top h2 { font-size: clamp(28px, 9vw, 34px); }
+            .filter-buttons { display: flex; flex-wrap: nowrap; width: 100%; overflow-x: auto; padding: 3px 2px 8px; scrollbar-width: thin; }
+            .filter-btn { flex: 0 0 auto; }
+            .painting-grid { grid-template-columns: minmax(0,1fr); gap: 20px; }
+            .painting-image { height: clamp(290px, 105vw, 440px); }
+            .painting-info { padding: 18px; }
+            .product-bottom, .painting-bottom { flex-wrap: wrap; }
+            .gallery-note { margin-top: 42px; padding: 30px 18px; }
+            .product-dialog-copy .order-button { white-space: normal; }
+        }
+        @media (max-width: 380px) {
+            .painting-bottom { align-items: flex-start; flex-direction: column; }
+            .order-button { max-width: 100%; }
+        }
+
+        .nav-actions { display: flex; align-items: center; gap: 10px; }
+        .cart-button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; padding: 9px 13px; color: #fff; background: rgba(255,255,255,.14); font: 700 13px "DM Sans", sans-serif; cursor: pointer; white-space: nowrap; }
+        .cart-button:hover { background: rgba(255,255,255,.25); }
+        .cart-count { display: grid; place-items: center; min-width: 22px; height: 22px; border-radius: 50%; color: #4e287a; background: #ffe36e; font-size: 12px; }
+        .product-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+        .product-actions button { font: 700 13px "DM Sans", sans-serif; cursor: pointer; }
+        .buy-now-button { color: #63319e; background: #ffe36e; }
+        .buy-now-button:hover { background: #f6cf54; }
+        .cart-backdrop { position: fixed; inset: 0; z-index: 2100; background: rgba(29,20,42,.52); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+        .cart-backdrop.is-open { opacity: 1; visibility: visible; }
+        .cart-drawer { position: fixed; z-index: 2101; inset: 0 0 0 auto; display: flex; flex-direction: column; width: min(440px, 100%); padding: 26px; color: var(--text); background: #fffdf9; box-shadow: -18px 0 50px rgba(26,15,40,.2); transform: translateX(105%); transition: transform .3s ease; overflow-y: auto; }
+        .cart-drawer.is-open { transform: translateX(0); }
+        .cart-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; padding-bottom: 22px; border-bottom: 1px solid #eee7f4; }
+        .cart-kicker { color: var(--purple); font-size: 10px; font-weight: 700; letter-spacing: 1.8px; }
+        .cart-header h2 { margin-top: 4px; font: 700 28px/1.2 "Playfair Display", serif; }
+        .cart-close { width: 40px; height: 40px; border: 0; border-radius: 50%; color: var(--text); background: #f1e9fa; font-size: 27px; cursor: pointer; }
+        .cart-items { display: grid; gap: 16px; padding: 20px 0; }
+        .cart-item { display: grid; grid-template-columns: 78px minmax(0,1fr) auto; align-items: center; gap: 12px; }
+        .cart-item img { width: 78px; height: 78px; border-radius: 12px; object-fit: cover; background: #f3edf8; }
+        .cart-item h3 { margin: 0 0 4px; font-size: 14px; }
+        .cart-item p { margin: 0; color: var(--muted); font-size: 12px; }
+        .cart-quantity { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+        .cart-quantity button, .remove-item { display: grid; place-items: center; border: 1px solid #e3d9ef; border-radius: 8px; width: 28px; height: 28px; color: var(--purple); background: white; font-weight: 700; cursor: pointer; }
+        .remove-item { border: 0; color: var(--coral); background: transparent; font-size: 18px; }
+        .cart-empty { padding: 34px 8px; color: var(--muted); text-align: center; }
+        .cart-summary { margin-top: auto; padding-top: 18px; border-top: 1px solid #eee7f4; }
+        .cart-summary[hidden], .checkout-view[hidden], .order-confirmation[hidden] { display: none; }
+        .cart-total-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+        .cart-total-row strong { color: var(--purple); text-align: right; }
+        .cart-summary p, .checkout-intro, .checkout-notice { color: var(--muted); font-size: 12px; line-height: 1.6; }
+        .checkout-button { width: 100%; margin-top: 16px; padding: 13px 18px; border: 0; border-radius: 999px; color: white; background: linear-gradient(110deg,#6533aa,#a047b7); font: 700 14px "DM Sans",sans-serif; cursor: pointer; }
+        .checkout-button:hover { background: linear-gradient(110deg,#e56570,#f39a53); }
+        .checkout-view { padding-top: 18px; }
+        .back-to-cart { margin-bottom: 20px; border: 0; color: var(--purple); background: transparent; font: 700 13px "DM Sans",sans-serif; cursor: pointer; }
+        .checkout-view h3, .order-confirmation h3 { margin: 0 0 7px; font: 700 23px "Playfair Display",serif; }
+        .checkout-error { padding: 10px 12px; border-radius: 10px; color: #8e2635; background: #ffe9ec; font-size: 13px; }
+        .checkout-view label { display: block; margin: 15px 0 6px; font-size: 13px; font-weight: 700; }
+        .checkout-view label span { color: var(--muted); font-weight: 400; }
+        .checkout-view input, .checkout-view textarea { width: 100%; padding: 11px 12px; border: 1px solid #ddd3e8; border-radius: 10px; color: var(--text); background: white; font: 14px "DM Sans",sans-serif; }
+        .checkout-view input:focus, .checkout-view textarea:focus { outline: 2px solid #c9a5f0; border-color: var(--purple); }
+        .checkout-notice { margin-top: 12px; }
+        .order-confirmation { margin: auto 0; text-align: center; }
+        .confirmation-mark { display: inline-grid; place-items: center; width: 58px; height: 58px; margin-bottom: 16px; border-radius: 50%; color: #fff; background: #48a879; font-size: 28px; }
+        .order-confirmation p { color: var(--muted); line-height: 1.7; }
+        body.cart-open { overflow: hidden; }
+        @media (max-width: 680px) {
+            .nav-actions { grid-column: 2; grid-row: 1; gap: 7px; }
+            .nav-actions .shop-button { display: none; }
+            .cart-button { padding: 7px 9px; font-size: 12px; }
+            .cart-count { min-width: 20px; height: 20px; }
+            .cart-drawer { padding: 20px 17px; }
+            .product-actions { display: grid; grid-template-columns: 1fr; }
+            .product-actions .order-button { text-align: center; }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="site-header">
+
+        <nav class="navbar">
+
+            <a href="Home.html" class="logo">
+                CREATIVE <span>SPIRIT</span>
+            </a>
+
+            <div class="nav-links">
+
+                <a href="Home.html">
+                    Home
+                </a>
+
+                <a href="Gallery.html" class="active">
+                    Gallery
+                </a>
+
+                <a href="About.html">
+                    About
+                </a>
+
+                <a href="Contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+            <div class="nav-actions">
+                <button class="cart-button" id="openCart" type="button" aria-label="Open cart">
+                    Cart <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <a href="#products" class="shop-button">Shop Art</a>
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         GALLERY HERO
+    ========================= -->
+
+    <section class="gallery-hero">
+
+        <span class="gallery-label">
+            The Art Collection
+        </span>
+        <h1>
+            Find your <span>piece</span>.
+        </h1>
+
+        <p>
+            Browse original paintings created with color,
+            creativity and emotion. Choose something that
+            makes your space feel more like you.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         GALLERY
+    ========================= -->
+
+    <section class="gallery-section" id="products">
+
+        <div class="gallery-top">
+
+            <h2>
+                All Paintings
+            </h2>
+
+            <div class="filter-buttons">
+
+                <button class="filter-btn active" data-filter="all">
+                    All
+                </button>
+
+                <button class="filter-btn" data-filter="abstract">
+                    Personalized
+                </button>
+
+                <button class="filter-btn" data-filter="floral">
+                    Floral
+                </button>
+
+                <button class="filter-btn" data-filter="nature">
+                    Nature
+                </button>
+
+                <button class="filter-btn" data-filter="modern">
+                    Art &amp; Calligraphy
+                </button>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="painting-grid">
+
+            <article class="painting-card" data-category="abstract" data-title="Laiba Moonlit Garden" data-kind="Personalized" data-description="A custom name painting with a moonlit sky, mountain scene, and delicate flowering branches." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Laiba Moonlit Garden">
+                <div class="painting-image">
+                    <span class="art-tag">Personalized</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_31_36 PM.png" alt="Laiba Moonlit Garden" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Laiba Moonlit Garden</h3>
+                    <p class="painting-type">Personalized &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="abstract" data-title="Amna&#8217;s Pink Garden" data-kind="Personalized" data-description="A pink night-sky canvas personalized with Amna&#8217;s name, a crescent moon, and a garden of flowers." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Amna&#8217;s Pink Garden">
+                <div class="painting-image">
+                    <span class="art-tag">Personalized</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_29_36 PM.png" alt="Amna&#8217;s Pink Garden" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Amna&#8217;s Pink Garden</h3>
+                    <p class="painting-type">Personalized &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="floral" data-title="White Flower Bouquet" data-kind="Floral" data-description="A hand-painted bouquet of white daisies tied with a soft ribbon against a charcoal background." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for White Flower Bouquet">
+                <div class="painting-image">
+                    <span class="art-tag">Floral</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_45_06 PM.png" alt="White Flower Bouquet" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>White Flower Bouquet</h3>
+                    <p class="painting-type">Floral &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="modern" data-title="Roses and Calligraphy" data-kind="Calligraphy" data-description="Pink roses and expressive Arabic calligraphy combine in this dramatic black-canvas artwork." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Roses and Calligraphy">
+                <div class="painting-image">
+                    <span class="art-tag">Calligraphy</span>
+                    <img src="WhatsApp Image 2026-09-30 at 6.36.43 PM (1).jpeg" alt="Roses and Calligraphy" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Roses and Calligraphy</h3>
+                    <p class="painting-type">Calligraphy &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="nature" data-title="Tree by the Blue Lake" data-kind="Nature" data-description="A bright landscape painting of a leafy tree beside blue water, with a small fence in the foreground." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Tree by the Blue Lake">
+                <div class="painting-image">
+                    <span class="art-tag">Nature</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_26_06 PM.png" alt="Tree by the Blue Lake" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Tree by the Blue Lake</h3>
+                    <p class="painting-type">Nature &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="modern" data-title="Mosque at Sunset" data-kind="Architecture" data-description="A colorful hand-painted mosque with golden details, tall minarets, and a sky washed in blue." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Mosque at Sunset">
+                <div class="painting-image">
+                    <span class="art-tag">Architecture</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_18_04 PM.png" alt="Mosque at Sunset" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Taj Mahal in Color</h3>
+                    <p class="painting-type">Architecture &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="nature" data-title="Tropical Beach" data-kind="Nature" data-description="A peaceful coastal scene with palms, blue water, distant mountains, and a small sailboat." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Tropical Beach">
+                <div class="painting-image">
+                    <span class="art-tag">Nature</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_13_14 PM.png" alt="Tropical Beach" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Tropical Beach</h3>
+                    <p class="painting-type">Nature &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="nature" data-title="Moonlit Mountain Lake" data-kind="Nature" data-description="A deep blue night landscape with a moonlit mountain reflected in a quiet lake." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Moonlit Mountain Lake">
+                <div class="painting-image">
+                    <span class="art-tag">Nature</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_15_17 PM.png" alt="Moonlit Mountain Lake" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Moonlit Mountain Lake</h3>
+                    <p class="painting-type">Nature &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="floral" data-title="Red Tulips" data-kind="Floral" data-description="Three vivid red tulips rise against a calm pale background in this framed floral painting." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Red Tulips">
+                <div class="painting-image">
+                    <span class="art-tag">Floral</span>
+                    <img src="WhatsApp Image 2026-09-30 at 7.05.17 PM.jpeg" alt="Red Tulips" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Red Tulips</h3>
+                    <p class="painting-type">Floral &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="floral" data-title="Daisies on Black" data-kind="Floral" data-description="A cheerful cluster of white and yellow daisies painted on a dark canvas." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Daisies on Black">
+                <div class="painting-image">
+                    <span class="art-tag">Floral</span>
+                    <img src="WhatsApp Image 2026-09-30 at 7.05.31 PM (1).jpeg" alt="Daisies on Black" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Daisies on Black</h3>
+                    <p class="painting-type">Floral &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+
+            <article class="painting-card" data-category="nature" data-title="Blue Butterfly on Blossoms" data-kind="Nature" data-description="A bright blue butterfly rests on a flowering branch against a soft neutral background." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Blue Butterfly on Blossoms">
+                <div class="painting-image">
+                    <span class="art-tag">Nature</span>
+                    <img src="ChatGPT Image Sep 30, 2026, 08_24_13 PM.png" alt="Blue Butterfly on Blossoms" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Blue Butterfly on Blossoms</h3>
+                    <p class="painting-type">Nature &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="floral" data-title="Pink Blossoms" data-kind="Floral" data-description="Delicate pink blossoms on a slender branch bring a gentle touch of color to a light blue canvas." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Pink Blossoms">
+                <div class="painting-image">
+                    <span class="art-tag">Floral</span>
+                    <img src="WhatsApp Image 2026-09-30 at 7.05.33 PM.jpeg" alt="Pink Blossoms" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Pink Blossoms</h3>
+                    <p class="painting-type">Floral &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="modern" data-title="Allah in Turquoise" data-kind="Calligraphy" data-description="Arabic calligraphy is centered on a turquoise round canvas framed with a leafy floral border." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Allah in Turquoise">
+                <div class="painting-image">
+                    <span class="art-tag">Calligraphy</span>
+                    <img src="WhatsApp Image 2026-09-30 at 7.05.34 PM.jpeg" alt="Allah in Turquoise" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Allah in Turquoise</h3>
+                    <p class="painting-type">Calligraphy &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="modern" data-title="Floral Bismillah" data-kind="Calligraphy" data-description="A floral calligraphy piece with a pink background and bright decorative flowers." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Floral Bismillah">
+                <div class="painting-image">
+                    <span class="art-tag">Calligraphy</span>
+                    <img src="WhatsApp Image 2026-09-30 at 7.05.35 PM (1).jpeg" alt="Floral Bismillah" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Floral Bismillah</h3>
+                    <p class="painting-type">Calligraphy &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="modern" data-title="A Message of Hope" data-kind="Inspirational" data-description="A round forest-green artwork with a short message about hope surrounded by trees." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for A Message of Hope">
+                <div class="painting-image">
+                    <span class="art-tag">Inspirational</span>
+                    <img src="WhatsApp Image 2026-09-30 at 7.05.35 PM.jpeg" alt="A Message of Hope" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>A Message of Hope</h3>
+                    <p class="painting-type">Inspirational &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="painting-card" data-category="modern" data-title="Words of Hope" data-kind="Inspirational" data-description="A round blue artwork with an uplifting quote beneath a starry evening sky." tabindex="0" role="button" aria-haspopup="dialog" aria-label="View details for Words of Hope">
+                <div class="painting-image">
+                    <span class="art-tag">Inspirational</span>
+                    <img src="WhatsApp Image 2026-09-30 at 7.05.36 PM.jpeg" alt="Words of Hope" loading="lazy">
+                </div>
+                <div class="painting-info">
+                    <h3>Words of Hope</h3>
+                    <p class="painting-type">Inspirational &bull; Original Artwork</p>
+                    <div class="painting-bottom">
+                        <span class="price">Hand-painted original</span>
+                        <button type="button" class="order-button product-view-button">View details</button>
+                    </div>
+                </div>
+            </article>
+
+        
+
+        
+
+        </div>
+
+
+        <!-- =========================
+             NOTE
+        ========================= -->
+
+        <div class="gallery-note">
+
+            <h2>
+                Looking for something personal?
+            </h2>
+
+            <p>
+                Want a painting made specially for your room,
+                a gift, a name, or a particular color palette?
+                Get in touch for a custom artwork.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <h2>
+                    CREATIVE <span>SPIRIT</span>
+                </h2>
+
+                <p>
+                    Original paintings created with imagination,
+                    color and a little piece of the artist's soul.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Explore</h4>
+
+                <a href="Home.html">Home</a>
+                <a href="Gallery.html">Gallery</a>
+                <a href="About.html">About</a>
+                <a href="Contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Connect</h4>
+
+                <a href="https://www.instagram.com/" target="_blank">
+                    Instagram
+                </a>
+
+                <a href="https://www.youtube.com/" target="_blank">
+                    YouTube
+                </a>
+
+                <a href="Contact.html">
+                    Custom Artwork
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+            © 2026 Creative Spirit. All rights reserved.
+        </div>
+
+    </footer>
+
+
+
+
+    <div class="cart-backdrop" id="cartBackdrop" aria-hidden="true"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-labelledby="cartTitle">
+        <div class="cart-header">
+            <div><span class="cart-kicker">YOUR SELECTION</span><h2 id="cartTitle">Shopping cart</h2></div>
+            <button class="cart-close" id="closeCart" type="button" aria-label="Close cart">&times;</button>
+        </div>
+        <div class="cart-view" id="cartView">
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-empty" id="cartEmpty">Your cart is empty. Pick a painting to get started.</div>
+            <div class="cart-summary" id="cartSummary" hidden>
+                <div class="cart-total-row"><span>Artwork total</span><strong>Price on request</strong></div>
+                <p>We?ll confirm the price and delivery details with you.</p>
+                <button class="checkout-button" id="startCheckout" type="button">Continue to checkout</button>
+            </div>
+        </div>
+        <form class="checkout-view" id="checkoutForm" hidden>
+            <button class="back-to-cart" id="backToCart" type="button">&larr; Back to cart</button>
+            <h3>Your details</h3>
+            <p class="checkout-intro">Share your contact and delivery details to place your order request.</p>
+            <p class="checkout-error" id="checkoutError" role="alert" hidden></p>
+            <label for="customerName">Name</label>
+            <input id="customerName" name="name" autocomplete="name" required>
+            <label for="customerPhone">Phone / WhatsApp</label>
+            <input id="customerPhone" name="phone" type="tel" autocomplete="tel" required>
+            <label for="customerAddress">Delivery address</label>
+            <textarea id="customerAddress" name="address" rows="3" autocomplete="street-address" required></textarea>
+            <label for="orderNotes">Order notes <span>(optional)</span></label>
+            <textarea id="orderNotes" name="notes" rows="2"></textarea>
+            <button class="checkout-button" type="submit">Place order request</button>
+            <p class="checkout-notice">The shop will confirm the final price and delivery details. No payment is taken online.</p>
+        </form>
+        <div class="order-confirmation" id="orderConfirmation" hidden>
+            <span class="confirmation-mark">&#10003;</span>
+            <h3>Order request saved</h3>
+            <p id="confirmationText">Your request is saved on this device.</p>
+            <button class="checkout-button" id="finishOrder" type="button">Continue shopping</button>
+        </div>
+    </aside>
+
+    <div class="product-modal" id="productModal" aria-hidden="true">
+        <section class="product-dialog" role="dialog" aria-modal="true" aria-labelledby="productModalTitle" aria-describedby="productModalDescription">
+            <button class="product-modal-close" type="button" aria-label="Close product details">&times;</button>
+            <img id="productModalImage" src="" alt="">
+            <div class="product-dialog-copy">
+                <span class="art-tag" id="productModalKind"></span>
+                <h2 id="productModalTitle"></h2>
+                <p id="productModalDescription"></p>
+                <div class="product-actions">
+                    <button class="order-button add-cart-button" id="addToCart" type="button">Add to cart</button>
+                    <button class="order-button buy-now-button" id="buyNow" type="button">Order now</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- =========================
+         FILTER JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+
+        const cartDrawer = document.getElementById("cartDrawer");
+        const cartBackdrop = document.getElementById("cartBackdrop");
+        const cartItems = document.getElementById("cartItems");
+        const cartEmpty = document.getElementById("cartEmpty");
+        const cartSummary = document.getElementById("cartSummary");
+        const checkoutForm = document.getElementById("checkoutForm");
+        const orderConfirmation = document.getElementById("orderConfirmation");
+        const storageKey = "creativeSpiritCart";
+        let cart = [];
+        try { cart = JSON.parse(localStorage.getItem(storageKey) || "[]"); } catch { cart = []; }
+
+        function saveCart() {
+            localStorage.setItem(storageKey, JSON.stringify(cart));
+            renderCart();
+        }
+        function renderCart() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById("cartCount").textContent = count;
+            cartItems.replaceChildren();
+            cart.forEach((item, index) => {
+                const row = document.createElement("article");
+                row.className = "cart-item";
+                const image = document.createElement("img");
+                image.src = item.image;
+                image.alt = "";
+                const details = document.createElement("div");
+                const title = document.createElement("h3");
+                title.textContent = item.title;
+                const kind = document.createElement("p");
+                kind.textContent = `${item.kind} - Price on request`;
+                const quantity = document.createElement("div");
+                quantity.className = "cart-quantity";
+                const decrease = document.createElement("button");
+                decrease.type = "button";
+                decrease.dataset.cartAction = "decrease";
+                decrease.dataset.index = index;
+                decrease.setAttribute("aria-label", "Decrease quantity");
+                decrease.textContent = "-";
+                const amount = document.createElement("span");
+                amount.textContent = item.quantity;
+                const increase = document.createElement("button");
+                increase.type = "button";
+                increase.dataset.cartAction = "increase";
+                increase.dataset.index = index;
+                increase.setAttribute("aria-label", "Increase quantity");
+                increase.disabled = item.quantity >= 10;
+                increase.textContent = "+";
+                quantity.append(decrease, amount, increase);
+                details.append(title, kind, quantity);
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.className = "remove-item";
+                remove.dataset.cartAction = "remove";
+                remove.dataset.index = index;
+                remove.setAttribute("aria-label", `Remove ${item.title}`);
+                remove.textContent = "x";
+                row.append(image, details, remove);
+                cartItems.append(row);
+            });
+            cartEmpty.hidden = cart.length > 0;
+            cartSummary.hidden = cart.length === 0;
+        }
+        function showCart() {
+            cartDrawer.classList.add("is-open");
+            cartBackdrop.classList.add("is-open");
+            cartDrawer.setAttribute("aria-hidden", "false");
+            cartBackdrop.setAttribute("aria-hidden", "false");
+            document.body.classList.add("cart-open");
+            document.getElementById("closeCart").focus();
+        }
+        function hideCart() {
+            cartDrawer.classList.remove("is-open");
+            cartBackdrop.classList.remove("is-open");
+            cartDrawer.setAttribute("aria-hidden", "true");
+            cartBackdrop.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("cart-open");
+            document.getElementById("openCart").focus();
+        }
+        function addCurrentProduct(andCheckout) {
+            const card = activeProductCard;
+            if (!card) return;
+            const title = card.dataset.title;
+            const existing = cart.find(item => item.title === title);
+            if (existing && existing.quantity >= 10) return;
+            if (existing) existing.quantity += 1;
+            else cart.push({
+                title,
+                kind: card.dataset.kind,
+                image: card.querySelector("img").getAttribute("src"),
+                quantity: 1
+            });
+            saveCart();
+            if (andCheckout) {
+                closeModal();
+                showCart();
+                openCheckout();
+            } else {
+                const button = document.getElementById("addToCart");
+                button.textContent = "Added to cart";
+                window.setTimeout(() => { button.textContent = "Add to cart"; }, 1400);
+            }
+        }
+        function openCheckout() {
+            if (!cart.length) return;
+            document.getElementById("cartView").hidden = true;
+            checkoutForm.hidden = false;
+            orderConfirmation.hidden = true;
+            document.getElementById("customerName").focus();
+        }
+        function returnToCart() {
+            document.getElementById("cartView").hidden = false;
+            checkoutForm.hidden = true;
+            orderConfirmation.hidden = true;
+            document.getElementById("startCheckout").focus();
+        }
+        document.getElementById("openCart").addEventListener("click", showCart);
+        document.getElementById("closeCart").addEventListener("click", hideCart);
+        cartBackdrop.addEventListener("click", hideCart);
+        document.getElementById("addToCart").addEventListener("click", () => addCurrentProduct(false));
+        document.getElementById("buyNow").addEventListener("click", () => addCurrentProduct(true));
+        document.getElementById("startCheckout").addEventListener("click", openCheckout);
+        document.getElementById("backToCart").addEventListener("click", returnToCart);
+        document.getElementById("finishOrder").addEventListener("click", () => {
+            cart = [];
+            saveCart();
+            document.getElementById("cartView").hidden = false;
+            checkoutForm.hidden = true;
+            orderConfirmation.hidden = true;
+            hideCart();
+        });
+        cartItems.addEventListener("click", event => {
+            const button = event.target.closest("[data-cart-action]");
+            if (!button) return;
+            const index = Number(button.dataset.index);
+            const action = button.dataset.cartAction;
+            if (action === "remove") cart.splice(index, 1);
+            else if (action === "increase" && cart[index].quantity < 10) cart[index].quantity += 1;
+            else if (action === "decrease") {
+                cart[index].quantity -= 1;
+                if (cart[index].quantity <= 0) cart.splice(index, 1);
+            }
+            saveCart();
+        });
+        checkoutForm.addEventListener("submit", async event => {
+            event.preventDefault();
+            if (!cart.length || !checkoutForm.reportValidity()) return;
+            const submitButton = checkoutForm.querySelector('[type="submit"]');
+            const errorBox = document.getElementById("checkoutError");
+            const data = new FormData(checkoutForm);
+            errorBox.hidden = true;
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending order...";
+            try {
+                const response = await fetch("/api/orders", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        customer: Object.fromEntries(data.entries()),
+                        items: cart.map(({ title, kind, quantity }) => ({ title, kind, quantity }))
+                    })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error || "The order could not be saved.");
+                document.getElementById("confirmationText").textContent = `Order ${result.order_number} has been saved by the shop. They can contact you to confirm the price and delivery.`;
+                checkoutForm.hidden = true;
+                document.getElementById("cartView").hidden = true;
+                orderConfirmation.hidden = false;
+                cart = [];
+                saveCart();
+                document.getElementById("finishOrder").focus();
+            } catch (error) {
+                errorBox.textContent = error.message.includes("Failed to fetch")
+                    ? "The order server is not running. Start it with: python server.py"
+                    : error.message;
+                errorBox.hidden = false;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = "Place order request";
+            }
+        });
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && cartDrawer.classList.contains("is-open")) hideCart();
+        });
+        renderCart();
+
+        const productModal = document.getElementById("productModal");
+        const productDialog = productModal.querySelector(".product-dialog");
+        const closeProductModal = productModal.querySelector(".product-modal-close");
+        const modalImage = document.getElementById("productModalImage");
+        let previousFocus = null;
+        let activeProductCard = null;
+
+        function openProduct(card) {
+            activeProductCard = card;
+            previousFocus = document.activeElement;
+            const image = card.querySelector(".painting-image img");
+            const title = card.dataset.title;
+            document.getElementById("productModalTitle").textContent = title;
+            document.getElementById("productModalKind").textContent = card.dataset.kind;
+            document.getElementById("productModalDescription").textContent = card.dataset.description;
+            modalImage.src = image.src;
+            modalImage.alt = image.alt;
+            productModal.classList.add("is-open");
+            productModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+            closeProductModal.focus();
+        }
+
+        function closeModal() {
+            productModal.classList.remove("is-open");
+            productModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+            if (previousFocus) previousFocus.focus();
+        }
+
+        document.querySelectorAll(".painting-card").forEach(card => {
+            card.addEventListener("click", event => {
+                if (event.target.closest("a")) return;
+                openProduct(card);
+            });
+            card.addEventListener("keydown", event => {
+                if (event.target !== card) return;
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openProduct(card);
+                }
+            });
+        });
+        closeProductModal.addEventListener("click", closeModal);
+        productModal.addEventListener("click", event => {
+            if (!productDialog.contains(event.target)) closeModal();
+        });
+        document.addEventListener("keydown", event => {
+            if (!productModal.classList.contains("is-open")) return;
+            if (event.key === "Escape") closeModal();
+            if (event.key === "Tab") {
+                event.preventDefault();
+                const focusable = productDialog.querySelectorAll("a[href], button:not([disabled])");
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey) {
+                    if (document.activeElement === first) last.focus();
+                    else first.focus();
+                } else {
+                    if (document.activeElement === last) first.focus();
+                    else last.focus();
+                }
+            }
+        });
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const paintings = document.querySelectorAll(".painting-card");
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                filterButtons.forEach(btn => {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                const filter = button.getAttribute("data-filter");
+
+                paintings.forEach(painting => {
+
+                    const category =
+                        painting.getAttribute("data-category");
+
+                    if (filter === "all" || category === filter) {
+
+                        painting.style.display = "block";
+
+                    } else {
+
+                        painting.style.display = "none";
+
+                    }
+
+                });
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orders | Creative Spirit</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff8ec;color:#29203b;font:15px/1.55 Arial,sans-serif}.top{padding:22px clamp(18px,5vw,60px);color:#fff;background:linear-gradient(105deg,#592b9e,#8540b6 56%,#e56570)}.top a{color:#fff}.wrap{width:min(1100px,100% - 32px);margin:34px auto}.panel{padding:24px;border:1px solid #eadff4;border-radius:18px;background:#fff;box-shadow:0 12px 32px #3b23600e}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:end}label{display:block;margin-bottom:6px;font-weight:700}input,button,select{font:inherit}input{width:min(520px,100%);padding:11px 13px;border:1px solid #d8cce5;border-radius:9px}button{padding:11px 16px;border:0;border-radius:9px;background:#6533aa;color:#fff;font-weight:700;cursor:pointer}#message{margin:14px 0;color:#a22b42}.orders{display:grid;gap:16px;margin-top:24px}.order{padding:20px;border:1px solid #eee6f4;border-radius:14px}.order-head{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.order h2{margin:0 0 6px;font-size:19px}.order p{margin:6px 0}.muted{color:#706779}.status{display:flex;gap:8px;align-items:center;margin-top:12px}.items{padding-left:20px} @media(max-width:560px){.wrap{margin:18px auto}.panel{padding:16px}.status select{min-width:0;flex:1}}
+</style>
+</head>
+<body>
+<header class="top"><strong>Creative Spirit ? Orders</strong><span style="float:right"><a href="Home.html">View shop</a></span></header>
+<main class="wrap">
+<section class="panel">
+<h1>Order dashboard</h1>
+<p class="muted">Enter the admin token shown in the server terminal to review and update saved orders.</p>
+<form id="authForm" class="row"><div><label for="token">Admin token</label><input id="token" type="password" autocomplete="current-password" required></div><button>Load orders</button><button type="button" id="loadInquiries">Load inquiries</button></form>
+<p id="message" role="status"></p>
+<div class="orders" id="orders"></div>
+<h2>Customer inquiries</h2><div class="orders" id="inquiries"></div>
+</section>
+</main>
+<script>
+const authForm=document.getElementById('authForm'), tokenInput=document.getElementById('token'), message=document.getElementById('message'), list=document.getElementById('orders'), inquiryList=document.getElementById('inquiries');
+let adminToken='';
+const statuses=['new','confirmed','preparing','shipped','completed','cancelled'];
+function node(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
+async function loadOrders(){adminToken=tokenInput.value;message.textContent='Loading orders...';list.replaceChildren();try{const r=await fetch('/api/admin/orders',{headers:{Authorization:'Bearer '+adminToken}});const data=await r.json();if(!r.ok)throw Error(data.error||'Could not load orders.');if(!data.orders.length){message.textContent='No orders yet.';return;}message.textContent=data.orders.length+' order(s)';data.orders.forEach(order=>list.append(makeOrder(order)));}catch(e){message.textContent=e.message;}}
+function makeOrder(order){const card=node('article',undefined,'order'),head=node('div',undefined,'order-head'),meta=node('div'),title=node('h2',order.order_number),date=node('p',new Date(order.created_at).toLocaleString(),'muted');meta.append(title,date);const customer=node('div');customer.append(node('p',order.customer_name),node('p',order.customer_phone),node('p',order.customer_address));head.append(meta,customer);card.append(head);if(order.customer_notes)card.append(node('p','Note: '+order.customer_notes));const items=node('ul',undefined,'items');order.items.forEach(item=>items.append(node('li',item.title+' ? '+item.quantity)));card.append(items);const row=node('div',undefined,'status'),label=node('label','Status:');const select=document.createElement('select');statuses.forEach(status=>{const option=node('option',status);option.value=status;select.append(option)});select.value=order.status;const update=node('button','Update');update.type='button';update.addEventListener('click',async()=>{update.disabled=true;try{const r=await fetch('/api/admin/orders/'+order.id+'/status',{method:'PATCH',headers:{Authorization:'Bearer '+adminToken,'Content-Type':'application/json'},body:JSON.stringify({status:select.value})});const data=await r.json();if(!r.ok)throw Error(data.error||'Update failed');message.textContent=order.order_number+' updated.';}catch(e){message.textContent=e.message;}finally{update.disabled=false;}});row.append(label,select,update);card.append(row);return card;}
+async function loadInquiries(){adminToken=tokenInput.value;message.textContent='Loading inquiries...';inquiryList.replaceChildren();try{const r=await fetch('/api/admin/inquiries',{headers:{Authorization:'Bearer '+adminToken}});const data=await r.json();if(!r.ok)throw Error(data.error||'Could not load inquiries.');if(!data.inquiries.length){message.textContent='No inquiries yet.';return;}message.textContent=data.inquiries.length+' inquiry(s)';data.inquiries.forEach(item=>{const card=node('article',undefined,'order');card.append(node('h2',item.reference),node('p',new Date(item.created_at).toLocaleString(),'muted'),node('p',item.customer_name+' ? '+item.customer_contact),node('p',item.subject||'Artwork inquiry'),node('p',item.message));inquiryList.append(card);});}catch(e){message.textContent=e.message;}}
+document.getElementById('loadInquiries').addEventListener('click',loadInquiries);
+authForm.addEventListener('submit',e=>{e.preventDefault();loadOrders();});
+</script>
+</body></html>

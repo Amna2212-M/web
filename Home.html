@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Creative Spirit | Original Paintings</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #fffaf4;
+            --lavender: #e9ddff;
+            --peach: #ffd9c7;
+            --yellow: #ffeaa7;
+            --sage: #d8eadb;
+            --coral: #e88978;
+            --purple: #7656a8;
+            --text: #29232f;
+            --muted: #746b78;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 250, 244, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(41, 35, 47, 0.08);
+        }
+
+        .navbar {
+            max-width: 1250px;
+            margin: auto;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--coral);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--purple);
+        }
+
+        .shop-button {
+            background: var(--purple);
+            color: white;
+            padding: 11px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
+
+        .shop-button:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1250px;
+            margin: auto;
+            padding: 70px 30px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .small-label {
+            display: inline-block;
+            background: var(--yellow);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(48px, 6vw, 78px);
+            line-height: 1.02;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--coral);
+            font-style: italic;
+        }
+
+        .hero-text {
+            max-width: 510px;
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .primary-button {
+            background: var(--purple);
+            color: white;
+            padding: 14px 26px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
+
+        .primary-button:hover {
+            background: var(--coral);
+            transform: translateY(-3px);
+        }
+
+        .secondary-button {
+            border: 1.5px solid var(--text);
+            padding: 13px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            background: var(--text);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            height: 600px;
+            object-fit: cover;
+            border-radius: 180px 180px 25px 25px;
+        }
+
+        .floating-card {
+            position: absolute;
+            left: -30px;
+            bottom: 30px;
+            background: white;
+            padding: 18px 22px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(40, 30, 50, 0.13);
+        }
+
+        .floating-card strong {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .floating-card span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            padding: 75px 30px;
+            background: var(--lavender);
+            text-align: center;
+        }
+
+        .intro-inner {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .intro h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .intro p {
+            color: #5d5268;
+            font-size: 17px;
+        }
+
+        /* =========================
+           COLLECTIONS
+        ========================= */
+
+        .section {
+            max-width: 1250px;
+            margin: auto;
+            padding: 95px 30px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 42px;
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 43px;
+            font-weight: 700;
+        }
+
+        .section-heading p {
+            max-width: 430px;
+            color: var(--muted);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .collection-card {
+            min-height: 360px;
+            padding: 28px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            position: relative;
+            transition: 0.35s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .collection-card:nth-child(1) {
+            background: var(--peach);
+        }
+
+        .collection-card:nth-child(2) {
+            background: var(--sage);
+        }
+
+        .collection-card:nth-child(3) {
+            background: var(--yellow);
+        }
+
+        .collection-number {
+            position: absolute;
+            top: 22px;
+            right: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            opacity: 0.6;
+        }
+
+        .collection-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 31px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .collection-card p {
+            font-size: 14px;
+            max-width: 270px;
+            color: #594f59;
+        }
+
+        /* =========================
+           FEATURED PAINTINGS
+        ========================= */
+
+        .featured {
+            background: white;
+        }
+
+        .painting-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .painting-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.35s ease;
+        }
+
+        .painting-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 18px 40px rgba(40, 30, 50, 0.10);
+        }
+
+        .painting-image {
+            height: 390px;
+            overflow: hidden;
+        }
+
+        .painting-image img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        .painting-card:hover .painting-image img {
+            transform: scale(1.05);
+        }
+
+        .painting-info {
+            padding: 20px;
+        }
+
+        .painting-info h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 23px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .painting-info p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .painting-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .view-link {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--coral);
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .home-cta {
+            max-width: 1190px;
+            margin: 90px auto;
+            padding: 70px 50px;
+            border-radius: 30px;
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(233, 221, 255, 0.95),
+                    rgba(255, 217, 199, 0.95),
+                    rgba(255, 234, 167, 0.95)
+                );
+            text-align: center;
+        }
+
+        .home-cta h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 45px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .home-cta p {
+            max-width: 620px;
+            margin: 0 auto 27px;
+            color: #5f5562;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #29232f;
+            color: white;
+            padding: 60px 30px 25px;
+        }
+
+        .footer-inner {
+            max-width: 1250px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 45px;
+        }
+
+        .footer-brand h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand h2 span {
+            color: #ffb39f;
+        }
+
+        .footer-brand p {
+            color: #c8c0cb;
+            max-width: 350px;
+            font-size: 14px;
+        }
+
+        footer h4 {
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #c8c0cb;
+            font-size: 14px;
+            margin-bottom: 9px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffb39f;
+        }
+
+        .footer-bottom {
+            max-width: 1250px;
+            margin: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+            text-align: center;
+            color: #aaa2ad;
+            font-size: 12px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                gap: 17px;
+            }
+
+            .shop-button {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 50px;
+            }
+
+            .hero-image img {
+                height: 500px;
+            }
+
+            .floating-card {
+                left: 20px;
+            }
+
+            .collection-grid,
+            .painting-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 620px) {
+
+            .navbar {
+                padding: 17px 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 45px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 49px;
+            }
+
+            .hero-image img {
+                height: 430px;
+            }
+
+            .section {
+                padding: 65px 20px;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .section-heading h2 {
+                font-size: 36px;
+                margin-bottom: 12px;
+            }
+
+            .collection-grid,
+            .painting-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .painting-image {
+                height: 420px;
+            }
+
+            .home-cta {
+                margin: 60px 20px;
+                padding: 50px 25px;
+            }
+
+            .home-cta h2 {
+                font-size: 35px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Brighter color accents and richer surfaces */
+        :root {
+            --cream: #fff8ed;
+            --lavender: #e5c8ff;
+            --peach: #ffc5a1;
+            --yellow: #ffe16b;
+            --sage: #c8efd2;
+            --coral: #f06d62;
+            --purple: #7041b8;
+            --text: #282037;
+        }
+        .site-header { background: rgba(255, 248, 237, 0.94); }
+        .hero-image img { border: 10px solid white; box-shadow: 0 24px 60px rgba(75, 43, 120, 0.2); }
+        .intro { background: linear-gradient(110deg, #ffe16b, #ffc5a1 52%, #e5c8ff); }
+        .collection-card:nth-child(1) { background: linear-gradient(145deg, #ffc5a1, #ff9e91); }
+        .collection-card:nth-child(2) { background: linear-gradient(145deg, #c8efd2, #a7d9bb); }
+        .collection-card:nth-child(3) { background: linear-gradient(145deg, #ffe16b, #ffc96b); }
+        .featured { background: linear-gradient(180deg, #fff 0%, #fff5e8 100%); }
+        .painting-card { box-shadow: 0 10px 28px rgba(61, 39, 83, 0.08); }
+        .primary-button, .shop-button { background: linear-gradient(120deg, #7041b8, #a14bc4); }
+        .primary-button:hover, .shop-button:hover { background: linear-gradient(120deg, #f06d62, #f3a34c); }
+
+        /* Bright shared navigation and small-screen layout */
+        :root {
+            --cream: #fff8ec;
+            --lavender: #dfc0ff;
+            --peach: #ffc49e;
+            --yellow: #ffe36e;
+            --sage: #c8edd0;
+            --coral: #f36b5e;
+            --purple: #6533aa;
+            --text: #29203b;
+            --muted: #706779;
+        }
+        html, body { width: 100%; max-width: 100%; }
+        body { overflow-x: clip; }
+        img { max-width: 100%; }
+        .site-header {
+            color: #fff;
+            background: linear-gradient(105deg, #592b9e 0%, #8540b6 56%, #e56570 100%);
+            border-bottom: 0;
+            box-shadow: 0 8px 24px rgba(67, 34, 110, .2);
+        }
+        .navbar { width: min(100%, 1310px); gap: 22px; }
+        .logo { color: #fff; white-space: nowrap; }
+        .logo span { color: #ffe36e; }
+        .nav-links a { color: rgba(255,255,255,.9); padding: 8px 11px; border-radius: 999px; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: rgba(255,255,255,.17); }
+        .shop-button { color: #4e287a; background: #ffe36e; white-space: nowrap; }
+        .shop-button:hover { color: #fff; background: #f36b5e; }
+        .footer-brand h2 span { color: #ffe36e; }
+        @media (max-width: 860px) {
+            .navbar { padding: 15px 22px; gap: 14px; }
+            .nav-links { gap: clamp(4px, 1.2vw, 12px); }
+            .shop-button { display: inline-flex; align-items: center; justify-content: center; }
+        }
+        @media (max-width: 680px) {
+            .navbar {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 8px 12px;
+                padding: 12px 16px 10px;
+            }
+            .logo { grid-column: 1; grid-row: 1; font-size: clamp(18px, 5vw, 22px); }
+            .shop-button { grid-column: 2; grid-row: 1; padding: 8px 13px; font-size: 12px; }
+            .nav-links {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                width: 100%;
+                justify-content: space-between;
+                gap: 4px;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links a { flex: 0 0 auto; padding: 7px 9px; font-size: 12px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+        }
+        @media (max-width: 380px) {
+            .navbar { padding-inline: 12px; }
+            .nav-links a { padding-inline: 7px; font-size: 11px; }
+        }
+
+        .hero { width: min(100%, 1310px); }
+        .intro { color: #35224d; }
+        .section:nth-of-type(odd) { background-color: #fff8ec; }
+        .collection-card, .painting-card { min-width: 0; }
+        .painting-card { border: 1px solid rgba(101,51,170,.08); }
+        .home-cta { background: linear-gradient(115deg, #e2c6ff 0%, #ffc49e 54%, #ffe36e 100%); }
+        @media (max-width: 860px) {
+            .hero { gap: 38px; }
+            .hero-image img { height: clamp(350px, 65vw, 520px); }
+            .section { padding-inline: clamp(20px, 5vw, 42px); }
+        }
+        @media (max-width: 680px) {
+            .hero { padding: 38px 18px 52px; gap: 28px; }
+            .hero h1 { font-size: clamp(40px, 12vw, 54px); }
+            .hero-image img { height: min(112vw, 440px); border-width: 7px; }
+            .floating-card { left: 12px; bottom: 14px; max-width: calc(100% - 24px); }
+            .section { padding: 54px 18px; }
+            .section-heading h2 { font-size: clamp(30px, 9vw, 38px); }
+            .collection-grid, .painting-grid { grid-template-columns: 1fr; gap: 20px; }
+            .painting-image { height: clamp(300px, 105vw, 440px); }
+            .home-cta { margin: 42px 14px; padding: 38px 20px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <header class="site-header">
+        <nav class="navbar">
+
+            <a href="Home.html" class="logo">
+                CREATIVE <span>SPIRIT</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="Home.html" class="active">Home</a>
+                <a href="Gallery.html">Gallery</a>
+                <a href="About.html">About</a>
+                <a href="Contact.html">Contact</a>
+            </div>
+
+            <a href="Gallery.html" class="shop-button">
+                Shop Art
+            </a>
+
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="small-label">
+                    Original Art • Made with Feeling
+                </span>
+
+                <h1>
+                    Art that brings
+                    <span>color</span>
+                    to life.
+                </h1>
+
+                <p class="hero-text">
+                    Discover original paintings created with color,
+                    imagination, and a little piece of the artist's soul.
+                    Find a piece that feels like it belongs in your space.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="Gallery.html" class="primary-button">
+                        Explore Paintings
+                    </a>
+
+                    <a href="About.html" class="secondary-button">
+                        Discover Creative Spirit
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <img
+                    src="ChatGPT Image Sep 30, 2026, 08_18_04 PM.png"
+                    alt="Original mosque painting in warm sunset colors"
+                >
+
+                <div class="floating-card">
+                    <strong>Mosque at Sunset</strong>
+                    <span>Original painting from the collection</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             INTRO
+        ========================= -->
+
+        <section class="intro">
+
+            <div class="intro-inner">
+
+                <h2>
+                    Every painting tells a different story.
+                </h2>
+
+                <p>
+                    From peaceful botanical pieces to expressive abstract
+                    artwork, Creative Spirit is a collection of paintings
+                    made to add personality, warmth and beauty to your space.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COLLECTIONS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Explore Collections</h2>
+                </div>
+
+                <p>
+                    Explore different moods, colors and artistic styles
+                    created for people who love meaningful art.
+                </p>
+
+            </div>
+
+
+            <div class="collection-grid">
+
+                <a href="Gallery.html" class="collection-card">
+
+                    <span class="collection-number">01</span>
+
+                    <h3>Abstract Dreams</h3>
+
+                    <p>
+                        Expressive colors, shapes and textures
+                        inspired by imagination.
+                    </p>
+
+                </a>
+
+
+                <a href="Gallery.html" class="collection-card">
+
+                    <span class="collection-number">02</span>
+
+                    <h3>Botanical Mood</h3>
+
+                    <p>
+                        Nature-inspired artwork bringing calm
+                        greenery into your space.
+                    </p>
+
+                </a>
+
+
+                <a href="Gallery.html" class="collection-card">
+
+                    <span class="collection-number">03</span>
+
+                    <h3>Color Stories</h3>
+
+                    <p>
+                        Vibrant paintings created around
+                        emotion, warmth and color.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FEATURED PAINTINGS
+        ========================= -->
+
+        <section class="section featured">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Featured Paintings</h2>
+                </div>
+
+                <a href="Gallery.html" class="view-link">
+                    View All Paintings →
+                </a>
+
+            </div>
+
+
+            <div class="painting-grid">
+
+                <article class="painting-card">
+                    <div class="painting-image"><img src="ChatGPT Image Sep 30, 2026, 08_31_36 PM.png" alt="Laiba Moonlit Garden"></div>
+                    <div class="painting-info">
+                        <h3>Laiba Moonlit Garden</h3>
+                        <p>Personalized &bull; Original Artwork</p>
+                        <div class="painting-bottom">
+                            <span class="price">Hand-painted original</span>
+                            <a href="Gallery.html" class="view-link">View Artwork</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="painting-card">
+                    <div class="painting-image"><img src="ChatGPT Image Sep 30, 2026, 08_29_36 PM.png" alt="Amna&#8217;s Pink Garden"></div>
+                    <div class="painting-info">
+                        <h3>Amna&#8217;s Pink Garden</h3>
+                        <p>Personalized &bull; Original Artwork</p>
+                        <div class="painting-bottom">
+                            <span class="price">Hand-painted original</span>
+                            <a href="Gallery.html" class="view-link">View Artwork</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="painting-card">
+                    <div class="painting-image"><img src="ChatGPT Image Sep 30, 2026, 08_45_06 PM.png" alt="White Flower Bouquet"></div>
+                    <div class="painting-info">
+                        <h3>White Flower Bouquet</h3>
+                        <p>Floral &bull; Original Artwork</p>
+                        <div class="painting-bottom">
+                            <span class="price">Hand-painted original</span>
+                            <a href="Gallery.html" class="view-link">View Artwork</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="painting-card">
+                    <div class="painting-image"><img src="WhatsApp Image 2026-09-30 at 6.36.43 PM (1).jpeg" alt="Roses and Calligraphy"></div>
+                    <div class="painting-info">
+                        <h3>Roses and Calligraphy</h3>
+                        <p>Calligraphy &bull; Original Artwork</p>
+                        <div class="painting-bottom">
+                            <span class="price">Hand-painted original</span>
+                            <a href="Gallery.html" class="view-link">View Artwork</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="painting-card">
+                    <div class="painting-image"><img src="ChatGPT Image Sep 30, 2026, 08_26_06 PM.png" alt="Tree by the Blue Lake"></div>
+                    <div class="painting-info">
+                        <h3>Tree by the Blue Lake</h3>
+                        <p>Nature &bull; Original Artwork</p>
+                        <div class="painting-bottom">
+                            <span class="price">Hand-painted original</span>
+                            <a href="Gallery.html" class="view-link">View Artwork</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="painting-card">
+                    <div class="painting-image"><img src="ChatGPT Image Sep 30, 2026, 08_18_04 PM.png" alt="Mosque at Sunset"></div>
+                    <div class="painting-info">
+                        <h3>Mosque at Sunset</h3>
+                        <p>Architecture &bull; Original Artwork</p>
+                        <div class="painting-bottom">
+                            <span class="price">Hand-painted original</span>
+                            <a href="Gallery.html" class="view-link">View Artwork</a>
+                        </div>
+                    </div>
+                </article>
+
+            
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HOME CTA
+        ========================= -->
+
+        <section class="home-cta">
+
+            <h2>
+                Find a painting that feels like you.
+            </h2>
+
+            <p>
+                Browse the complete collection and discover artwork
+                made to bring something special to your walls.
+            </p>
+
+            <a href="Gallery.html" class="primary-button">
+                Browse Gallery
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <h2>
+                    CREATIVE <span>SPIRIT</span>
+                </h2>
+
+                <p>
+                    Original paintings created with imagination,
+                    color and a little piece of the artist's soul.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Explore</h4>
+
+                <a href="Home.html">Home</a>
+                <a href="Gallery.html">Gallery</a>
+                <a href="About.html">About</a>
+                <a href="Contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>Connect</h4>
+
+                <a href="https://www.instagram.com/" target="_blank">
+                    Instagram
+                </a>
+
+                <a href="https://www.youtube.com/" target="_blank">
+                    YouTube
+                </a>
+
+                <a href="Contact.html">
+                    Order a Painting
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 Creative Spirit. All rights reserved.
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
