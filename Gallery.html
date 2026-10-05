@@ -662,6 +662,14 @@
         .confirmation-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-top: 14px; }
         .confirmation-links a { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 9px 13px; border-radius: 999px; color: #6533aa; background: #fff; border: 1px solid #e3d9ef; font-size: 13px; font-weight: 700; text-decoration: none; }
         .confirmation-links a:hover { color: #fff; border-color: transparent; background: linear-gradient(110deg,#6533aa,#e56570); }
+        .painting-specs { display: grid; gap: 3px; margin: 11px 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+        .painting-specs strong { color: var(--text); }
+        .painting-contact { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .painting-contact a { display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 7px 12px; border: 1px solid #e1d4ef; border-radius: 999px; color: #6533aa; background: #fff; font-size: 12px; font-weight: 700; text-decoration: none; }
+        .painting-contact a:first-child { color: #fff; border-color: #218c5a; background: #218c5a; }
+        .painting-contact a:hover { filter: brightness(.94); transform: translateY(-1px); }
+        .product-specs { display: grid; gap: 4px; margin: 12px 0 18px; color: var(--muted); font-size: 14px; }
+        .product-specs strong { color: var(--text); }
         body.cart-open { overflow: hidden; }
         @media (max-width: 680px) {
             .nav-actions { grid-column: 2; grid-row: 1; gap: 7px; }
@@ -1093,13 +1101,17 @@
 
                 <h4>Connect</h4>
 
-                <a href="https://www.instagram.com/" target="_blank">
+                <a href="https://www.instagram.com/creative_spirit.22?igsi=N2x5dzB6NWM1ODdn" target="_blank" rel="noopener noreferrer">
                     Instagram
                 </a>
 
-                <a href="https://www.youtube.com/" target="_blank">
+                <a href="https://www.youtube.com/@CreativeSpirit22" target="_blank" rel="noopener noreferrer">
                     YouTube
                 </a>
+
+                <a href="https://www.tiktok.com/@am_art2212" target="_blank" rel="noopener noreferrer">TikTok</a>
+                <a href="https://wa.me/923338682088" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                <a href="mailto:bano.entry2005@gmail.com">Email</a>
 
                 <a href="Contact.html">
                     Custom Artwork
@@ -1177,6 +1189,7 @@
                 <span class="art-tag" id="productModalKind"></span>
                 <h2 id="productModalTitle"></h2>
                 <p id="productModalDescription"></p>
+                <div class="product-specs"><span id="productModalSize"></span><span id="productModalMedium"></span><strong>DM for Price</strong></div>
                 <div class="product-actions">
                     <button class="order-button add-cart-button" id="addToCart" type="button">Add to cart</button>
                     <button class="order-button buy-now-button" id="buyNow" type="button">Order now</button>
@@ -1394,6 +1407,8 @@
             document.getElementById("productModalTitle").textContent = title;
             document.getElementById("productModalKind").textContent = card.dataset.kind;
             document.getElementById("productModalDescription").textContent = card.dataset.description;
+            document.getElementById("productModalSize").textContent = `Canvas size: ${card.dataset.size}`;
+            document.getElementById("productModalMedium").textContent = `Medium: ${card.dataset.medium}`;
             modalImage.src = image.src;
             modalImage.alt = image.alt;
             productModal.classList.add("is-open");
@@ -1408,6 +1423,56 @@
             document.body.classList.remove("modal-open");
             if (previousFocus) previousFocus.focus();
         }
+
+        const paintingSpecs = [
+            ["4 × 4 inches", "Acrylic on Canvas"],
+            ["4 × 4 inches", "Acrylic on Canvas"],
+            ["4 × 4 inches", "Acrylic on Canvas"],
+            ["6 × 6 inches", "Acrylic on Canvas"],
+            ["6 × 6 inches", "Acrylic on Canvas"],
+            ["22 × 28 inches", "Acrylic on Canvas"],
+            ["4 × 4 inches", "Acrylic on Canvas"],
+            ["24 × 48 inches", "Acrylic on Canvas"],
+            ["4 × 4 inches", "Acrylic on Canvas"],
+            ["8 × 12 inches", "Acrylic on Canvas"],
+            ["8 × 8 inches", "Acrylic on Canvas"],
+            ["12 × 18 inches", "Acrylic on Canvas"],
+            ["4 × 4 inches", "Acrylic on Canvas"],
+            ["12 × 18 inches", "Acrylic on Canvas"],
+            ["4 × 4 inches round", "Acrylic on Round Canvas"],
+            ["4 × 4 inches round", "Acrylic on Round Canvas"]
+        ];
+        const instagramUrl = "https://www.instagram.com/creative_spirit.22?igsi=N2x5dzB6NWM1ODdn";
+        document.querySelectorAll(".painting-card").forEach((card, index) => {
+            const [size, medium] = paintingSpecs[index] || ["Ask for size", "Acrylic on Canvas"];
+            card.dataset.size = size;
+            card.dataset.medium = medium;
+            const specs = document.createElement("div");
+            specs.className = "painting-specs";
+            for (const [label, value] of [["Canvas size:", size], ["Medium:", medium]]) {
+                const line = document.createElement("span");
+                const strong = document.createElement("strong");
+                strong.textContent = label + " ";
+                line.append(strong, document.createTextNode(value));
+                specs.append(line);
+            }
+            card.querySelector(".painting-type").insertAdjacentElement("afterend", specs);
+            card.querySelector(".price").textContent = "DM for Price";
+            const contact = document.createElement("div");
+            contact.className = "painting-contact";
+            const whatsapp = document.createElement("a");
+            whatsapp.href = `https://wa.me/923338682088?text=${encodeURIComponent(`Hi, I’m interested in ${card.dataset.title}. Please share the price.`)}`;
+            whatsapp.target = "_blank";
+            whatsapp.rel = "noopener noreferrer";
+            whatsapp.textContent = "WhatsApp";
+            const instagram = document.createElement("a");
+            instagram.href = instagramUrl;
+            instagram.target = "_blank";
+            instagram.rel = "noopener noreferrer";
+            instagram.textContent = "Instagram";
+            contact.append(whatsapp, instagram);
+            card.querySelector(".painting-info").append(contact);
+        });
 
         document.querySelectorAll(".painting-card").forEach(card => {
             card.addEventListener("click", event => {
